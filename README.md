@@ -1,21 +1,18 @@
 # ElixirPcscSample
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `elixir_pcsc_sample` to your list of dependencies in `mix.exs`:
+To run:
 
 ```elixir
-def deps do
-  [
-    {:elixir_pcsc_sample, "~> 0.1.0"}
-  ]
-end
+mix deps.get
+mix run  blog.exs
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/elixir_pcsc_sample>.
-
+Sample output
+```
+08:39:44.886 [info] Application lager started on node nonode@nohost
+08:39:44.911 [info] Application pcsc started on node nonode@nohost
+08:39:44.911 [info] Application elixir_pcsc_sample started on node nonode@nohost
+Listing card readers
+08:39:44.964 [warning] got pcsc_reader_error: {error,{pcsc_error,-2146435026,no_readers,"Cannot find a smart card reader."}}; restarted ok
+[]
+```
