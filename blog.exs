@@ -5,6 +5,14 @@ IO.puts "Listing card readers"
 [reader | _] = readers
 IO.inspect "Using reader: " <> reader
 
+# get ATR
+{:ok, atr} = :pcsc_card_db.get_reader_atr(reader)
+IO.inspect atr
+
+# decode ATR
+atr_info = :iso7816.decode_atr(atr)
+IO.inspect atr_info
+
 # connect to the card
 {:ok, card} = :pcsc_card.start_link(reader, :shared, [:t1, :t0])
 
