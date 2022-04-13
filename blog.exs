@@ -19,3 +19,10 @@ IO.inspect replies
 command_apdu = {:apdu_cmd, :default, :iso, 0, 0, 0, << >>, 0}
 {:ok, replies} = :pcsc_card.command(card, command_apdu)
 IO.inspect replies
+
+# get the first reply only
+[reply | _] = replies
+case reply do
+	{:apdu_reply, _, :ok, msg} -> IO.puts(msg)
+	{:apdu_reply, _, :error, _} -> IO.puts("Failed")
+end
