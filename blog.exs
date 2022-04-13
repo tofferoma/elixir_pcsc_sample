@@ -16,6 +16,14 @@ IO.inspect atr_info
 # connect to the card
 {:ok, card} = :pcsc_card.start_link(reader, :shared, [:t1, :t0])
 
+aid = << 160, 0, 0, 0, 98, 3, 1, 12, 6, 1 >>
+select_apdu = {:apdu_cmd, :default, :iso, :select, 4, 0, aid, 0}
+
 # send select APDU
-aid = << 160, 0, 0, 0, 98, 99, 1, 12, 6, 0 >>
-{:ok, replies} = :pcsc_card.command(card, #apdu_command{cla = :iso, ins = :select, p1 = 0, p2 = 10, data = aid})
+{:ok, replies} = :pcsc_card.command(card, select_apdu)
+IO.inspect replies
+
+# send command APDU
+command_apdu = {:apdu_cmd, :default, :iso, 0, 0, 0, << >>, 0}
+{:ok, replies} = :pcsc_card.command(card, command_apdu)
+IO.inspect replies
