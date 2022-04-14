@@ -16,7 +16,7 @@ select_apdu = {:apdu_cmd, :default, :iso, :select, 4, 0, aid, :none}
 IO.inspect replies
 
 # send command APDU
-command_apdu = {:apdu_cmd, :default, :iso, 0, 0, 0, << >>, :none}
+command_apdu = {:apdu_cmd, :default, :iso, 0, 0, 0, :none, :none}
 {:ok, replies} = :pcsc_card.command(card, command_apdu)
 IO.inspect replies
 
